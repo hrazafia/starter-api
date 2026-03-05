@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Frontend minimal</title>
+</head>
+<body>
+  <h1>Frontend minimal</h1>
+  <button id="list">List users</button>
+  <form id="create">
+    <input name="name" placeholder="name" />
+    <input name="email" placeholder="email" />
+    <button type="submit">Create</button>
+  </form>
+  <pre id="out"></pre>
+
+<script>
+  const out = document.getElementById('out');
+
+  // backend accessible localement sur :3000 (map dans docker-compose)
+  const API_BASE = 'http://localhost:3000/api/users';
+
+  document.getElementById('list').onclick = async () => {
+    const r = await fetch(API_BASE);
+    const data = await r.json();
+    out.textContent = JSON.stringify(data, null, 2);
+  }
+
+  document.getElementById('create').onsubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const r = await fetch(API_BASE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email })
+    });
+    out.textContent = await r.text();
+  }
+</script>
+
+</body>
+</html>

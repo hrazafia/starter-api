@@ -1,0 +1,58 @@
+Routes exposées (liste rapide) :
+
+POST /auth/register
+
+POST /auth/login
+
+POST /auth/refresh
+
+POST /auth/logout
+
+GET /api/users/:id (public profile)
+
+GET /api/users/me
+
+PUT /api/users/me
+
+POST /api/users/me/avatar/presign
+
+POST /api/users/me/avatar (multipart)
+
+GET /api/users/by-username/:username
+
+GET /api/games
+
+POST /api/games
+
+GET /api/games/:id
+
+POST /api/games/:id/join
+
+POST /api/games/:id/leave
+
+POST /api/games/:id/rematch
+
+POST /api/games/:id/move (fallback HTTP)
+
+GET /api/friends
+
+POST /api/friends/requests
+
+GET /api/friends/requests
+
+POST /api/friends/requests/:id/accept
+
+POST /api/friends/requests/:id/reject
+
+DELETE /api/friends/:friendId
+
+GET /api/friends/:userId/status
+
+
+WebSocket events (socket.io):
+
+handshake.auth → { token, apiKey }
+
+client -> server: join_room, player_move, presence_ping
+
+server -> room: player_joined, game_update, presence
