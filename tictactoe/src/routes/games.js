@@ -4,9 +4,9 @@ import requireAuth from '../middlewars/requireAuth.js';
 
 const router = express.Router();
 
-router.get('/', ctrl.listGames);                    // GET /api/v1/games
+router.get('/', ctrl.listGames);                    // GET /api/games
 router.post('/', requireAuth, ctrl.createGame);     // POST
-router.get('/:id', ctrl.getGame);                   // GET /api/v1/games/:id
+router.get('/:id', ctrl.getGame);                   // GET /api/games/:id
 router.post('/:id/join', requireAuth, ctrl.joinGame);
 router.post('/:id/leave', requireAuth, ctrl.leaveGame);
 router.post('/:id/rematch', requireAuth, ctrl.rematch);
